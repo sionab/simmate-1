@@ -602,8 +602,10 @@ class Example__Python__MyFavoriteSettings(Workflow):
         # just running the workflow 10 times in row on different
         # perturbations or "rattling" of the original structure
         for n in range(10):
+            structure_new = structure.copy()
+            structure_new.perturb(0.05)
             another_workflow.run(
-                structure=structure.perturb(0.05)
+                structure = structure_new,
                 directory= directory / f"perturb_number_{n}",
                 # **kwargs, <-- you may want to pass kwargs too.
             )
